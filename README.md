@@ -20,7 +20,7 @@ Watch the tutorials:
 - Enter to the project directory
 - Run `npm install`
 - Run `npm run start:dev`
-- Open browser and go to address `http://localhost:8000`
+- Open browser and go to address `http://localhost:3000`
 - Scan the QR Code
 - Enjoy!
 
