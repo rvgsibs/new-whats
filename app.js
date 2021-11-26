@@ -55,63 +55,63 @@ const client = new Client({
 });
 
 client.on('message', msg => {
-  if (msg.body == '!ping') {
-    msg.reply('pong');
-  } else if (msg.body == 'good morning') {
-    msg.reply('selamat pagi');
-  } else if (msg.body == '!groups') {
-    client.getChats().then(chats => {
-      const groups = chats.filter(chat => chat.isGroup);
+  // if (msg.body == '!ping') {
+  //   msg.reply('pong');
+  // } else if (msg.body == 'good morning') {
+  //   msg.reply('selamat pagi');
+  // } else if (msg.body == '!groups') {
+  //   client.getChats().then(chats => {
+  //     const groups = chats.filter(chat => chat.isGroup);
 
-      if (groups.length == 0) {
-        msg.reply('You have no group yet.');
-      } else {
-        let replyMsg = '*YOUR GROUPS*\n\n';
-        groups.forEach((group, i) => {
-          replyMsg += `ID: ${group.id._serialized}\nName: ${group.name}\n\n`;
-        });
-        replyMsg += '_You can use the group id to send a message to the group._'
-        msg.reply(replyMsg);
-      }
-    });
-  }
+  //     if (groups.length == 0) {
+  //       msg.reply('You have no group yet.');
+  //     } else {
+  //       let replyMsg = '*YOUR GROUPS*\n\n';
+  //       groups.forEach((group, i) => {
+  //         replyMsg += `ID: ${group.id._serialized}\nName: ${group.name}\n\n`;
+  //       });
+  //       replyMsg += '_You can use the group id to send a message to the group._'
+  //       msg.reply(replyMsg);
+  //     }
+  //   });
+  // }
 
-  // Downloading media
-  if (msg.hasMedia) {
-    msg.downloadMedia().then(media => {
-      // To better understanding
-      // Please look at the console what data we get
-      console.log(media);
+  // // Downloading media
+  // if (msg.hasMedia) {
+  //   msg.downloadMedia().then(media => {
+  //     // To better understanding
+  //     // Please look at the console what data we get
+  //     console.log(media);
 
-      if (media) {
-        // The folder to store: change as you want!
-        // Create if not exists
-        const mediaPath = './downloaded-media/';
+  //     if (media) {
+  //       // The folder to store: change as you want!
+  //       // Create if not exists
+  //       const mediaPath = './downloaded-media/';
 
-        if (!fs.existsSync(mediaPath)) {
-          fs.mkdirSync(mediaPath);
-        }
+  //       if (!fs.existsSync(mediaPath)) {
+  //         fs.mkdirSync(mediaPath);
+  //       }
 
-        // Get the file extension by mime-type
-        const extension = mime.extension(media.mimetype);
+  //       // Get the file extension by mime-type
+  //       const extension = mime.extension(media.mimetype);
         
-        // Filename: change as you want! 
-        // I will use the time for this example
-        // Why not use media.filename? Because the value is not certain exists
-        const filename = new Date().getTime();
+  //       // Filename: change as you want! 
+  //       // I will use the time for this example
+  //       // Why not use media.filename? Because the value is not certain exists
+  //       const filename = new Date().getTime();
 
-        const fullFilename = mediaPath + filename + '.' + extension;
+  //       const fullFilename = mediaPath + filename + '.' + extension;
 
-        // Save to file
-        try {
-          fs.writeFileSync(fullFilename, media.data, { encoding: 'base64' }); 
-          console.log('File downloaded successfully!', fullFilename);
-        } catch (err) {
-          console.log('Failed to save the file:', err);
-        }
-      }
-    });
-  }
+  //       // Save to file
+  //       try {
+  //         fs.writeFileSync(fullFilename, media.data, { encoding: 'base64' }); 
+  //         console.log('File downloaded successfully!', fullFilename);
+  //       } catch (err) {
+  //         console.log('Failed to save the file:', err);
+  //       }
+  //     }
+  //   });
+  // }
 });
 
 client.initialize();
